@@ -1,0 +1,20 @@
+{
+    "geode": "4.10.0",
+    "gd": {
+        "win": "2.2074",
+        "android": "2.2074",
+        "mac": "2.2074",
+        "ios": "2.2074"
+    },
+
+    "version": "v1.0.0",
+    "id": "undefined0.output-specific-audio-offset",
+    "name": "Output-Specific Audio Offset",
+    "developer": "undefined0",
+    "description": "Save different offsets depending on your output device!",
+    "tags": [ "utility" ],
+
+    "links": {
+        "source": "https://github.com/undefined06855/Output-Specific-Audio-Offset"
+    }
+}

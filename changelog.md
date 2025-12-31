@@ -1,0 +1,3 @@
+# Output Specific Audio Offset
+## v1.0.0
+- Initial release
