@@ -32,11 +32,11 @@ void loadOffsetForAudioDevice() {
     if (FMODAudioEngine::get()->m_musicOffset != offset) {
         geode::Notification::create(fmt::format("Audio offset set to {}ms.", offset), geode::NotificationIcon::Info)->show();
 
-        if (auto popup = cocos2d::CCScene::get()->getChildByType<MoreOptionsLayer>(0)) {
-            popup->m_offsetInput->setString(std::to_string(offset));
-        }
-
         FMODAudioEngine::get()->m_musicOffset = offset;
+    }
+
+    if (auto popup = cocos2d::CCScene::get()->getChildByType<MoreOptionsLayer>(0)) {
+        popup->m_offsetInput->setString(std::to_string(offset));
     }
 }
 
