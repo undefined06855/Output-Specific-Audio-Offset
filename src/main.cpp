@@ -72,7 +72,7 @@ $on_game(Loaded) {
     cocos2d::CCScheduler::get()->scheduleSelector(schedule_selector(AudioOutputPoller::poll), new AudioOutputPoller, .5f, false);
 
     if (geode::Mod::get()->getSavedValue<bool>("is-first-startup", true)) {
-        geode::Mod::get()->setSavedValue<bool>("is-first-startup", true);
+        geode::Mod::get()->setSavedValue<bool>("is-first-startup", false);
         saveOffsetForAudioDevice();
     } else {
         loadOffsetForAudioDevice();
