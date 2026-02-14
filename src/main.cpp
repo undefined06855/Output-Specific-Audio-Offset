@@ -74,7 +74,5 @@ $on_game(Loaded) {
     if (geode::Mod::get()->getSavedValue<bool>("is-first-startup", true)) {
         geode::Mod::get()->setSavedValue<bool>("is-first-startup", false);
         saveOffsetForAudioDevice();
-    } else {
-        loadOffsetForAudioDevice();
     }
 }
