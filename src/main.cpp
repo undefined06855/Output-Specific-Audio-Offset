@@ -1,4 +1,4 @@
-#include <Geode/modify/MoreOptionsLayer.hpp>
+#include <Geode/modify/GameSettingsLayer.hpp>
 
 bool operator==(const FMOD_GUID& left, const FMOD_GUID& right) {
     return std::memcmp(&left, &right, sizeof(FMOD_GUID)) == 0;
@@ -31,12 +31,24 @@ void loadOffsetForAudioDevice() {
 
     geode::Notification::create(fmt::format("Audio offset set to {}ms.", offset), geode::NotificationIcon::Info)->show();
 
-    if (auto popup = cocos2d::CCScene::get()->getChildByType<MoreOptionsLayer>(0)) {
-        popup->m_offsetInput->setString(std::to_string(offset));
-    }
+    // not worth it to figure out how to get the input now in 2.209 lol
+    // https://codeberg.org/km7dev/AudioOffsetCalculator/src/branch/main/src/main.cpp#L12
+    // if (auto popup = cocos2d::CCScene::get()->getChildByType<GameSettingsLayer>(0)) {
+    //     popup->m_offsetInput->setString(std::to_string(offset));
+    // }
 
     FMODAudioEngine::get()->m_musicOffset = offset;
 }
+
+class $modify(GameSettingsLayer) {
+    void onClose(cocos2d::CCObject* sender) {
+        GameSettingsLayer::onClose(sender);
+        saveOffsetForAudioDevice();
+    }
+};
+
+#if defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
+#include <Geode/modify/MoreOptionsLayer.hpp>
 
 class $modify(MoreOptionsLayer) {
     void onClose(cocos2d::CCObject* sender) {
@@ -44,6 +56,7 @@ class $modify(MoreOptionsLayer) {
         saveOffsetForAudioDevice();
     }
 };
+#endif
 
 class AudioOutputPoller : public cocos2d::CCObject {
 public:
